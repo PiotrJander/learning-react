@@ -19,7 +19,8 @@ export class CommentList extends React.Component {
     super(props);
     this.updateNumberOfComments = this.updateNumberOfComments.bind(this);
     this.state = {
-      numberOfComments: 2
+      numberOfComments: 2,
+      comments: []
     }
   }
 
@@ -30,12 +31,21 @@ export class CommentList extends React.Component {
     })
   }
 
+  componentDidMount() {
+    let getComments = () => fetch('/comments', {method: 'GET'})
+      .then(response => response.json())
+      .then(payload => this.setState({
+        comments: payload
+      }))
+    setTimeout(getComments, 2000)
+  }
+
   render() {
     let noc = this.state.numberOfComments;
     return (
       <div>
         <input type="number" value={noc} onChange={this.updateNumberOfComments} />
-        {comments.slice(0, noc).map(comment => (
+        {this.state.comments.slice(0, noc).map(comment => (
           <Comment
             contents={comment.contents}
             author={comment.author}
