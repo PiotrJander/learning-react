@@ -5,9 +5,9 @@ export class CommentList extends React.Component {
   render() {
     return (
       <div>
-        <Comment />
-        <Comment />
-        <Comment />
+        <Comment contents={'foo'} />
+        <Comment contents={'bar'} />
+        <Comment contents={'baz'} />
       </div>
     )
   }
@@ -15,8 +15,13 @@ export class CommentList extends React.Component {
 
 export class Comment extends React.Component {
   render() {
+    // let p = this.props;
     return (
-      <p>Comment</p>
+      <p>{this.props.contents}</p>
     )
   }
 }
+
+Comment.propTypes = {
+  contents: React.PropTypes.string
+};
