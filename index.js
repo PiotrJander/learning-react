@@ -5,12 +5,20 @@ import { Provider } from 'react-redux'
 import App from './containers/App'
 import configureStore from './store/configureStore'
 import 'todomvc-app-css/index.css'
+import {CommentList} from './components/comments'
 
 const store = configureStore()
 
+// render(
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
+//   document.getElementById('root')
+// )
+
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <div>
+    <CommentList />
+  </div>,
   document.getElementById('root')
 )
